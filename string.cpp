@@ -24,14 +24,15 @@ void trimstr ( char *str )
 	endPtr--;
 
     // scan from the end of the string
-    while ( isspace ( *endPtr ) ) {
-        *endPtr = 0;
-        endPtr--;
-
-        // the entire string is whitespace!
-        if ( endPtr == str ) {
-            *str = 0;
-            return;
+    while (endPtr != str) {
+        if (isspace(*endPtr))
+        {
+            *endPtr = 0;
+            endPtr--;
+        }
+        else
+        {
+            break;
         }
     }
 
@@ -49,11 +50,8 @@ void trimstr ( char *str )
 
     // move the whole string down
 	if ( str != frontPtr ) {
-		int length = (int)(endPtr - frontPtr);
+		int length = (int)(endPtr - frontPtr)+1;
 	    memmove ( str, frontPtr, length );
-
-		// terminate the string
-		str[length] = 0;
 	}
 }
 
