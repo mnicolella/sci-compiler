@@ -25,7 +25,7 @@ static char	buf[MaxTokenLen + 100];
 
 void
 output(
-	strptr fmt,
+	const char* fmt,
 	...)
 {
 	va_list args;
@@ -35,7 +35,7 @@ output(
 	fflush(stdout);
 	va_end(args);
 
-	if (!isatty(fileno(stdout)) && isatty(fileno(stderr))) {
+	if (!_isatty(_fileno(stdout)) && _isatty(_fileno(stderr))) {
 		va_start(args, fmt);
 		vfprintf(stderr, fmt, args);
 		va_end(args);
@@ -44,7 +44,7 @@ output(
 
 void
 Info(
-	strptr parms,
+	const char* parms,
 	...)
 {
 	va_list	argPtr;
@@ -65,7 +65,7 @@ Info(
 
 void
 Warning(
-	strptr parms,
+	const char* parms,
 	...)
 {
 	va_list	argPtr;
@@ -93,7 +93,7 @@ Warning(
 
 void
 Error(
-	strptr parms,
+	const char* parms,
 	...)
 {
 	va_list	argPtr;
@@ -126,7 +126,7 @@ Error(
 
 void
 Severe(
-	strptr parms,
+	const char* parms,
 	...)
 {
 	va_list	argPtr;
@@ -159,7 +159,7 @@ Severe(
 
 void
 Fatal(
-	strptr parms,
+	const char* parms,
 	...)
 {
 	va_list	argPtr;
@@ -184,7 +184,7 @@ Fatal(
 
 void
 Panic(
-	strptr parms,
+	const char* parms,
 	...)
 {
 	va_list	argPtr;

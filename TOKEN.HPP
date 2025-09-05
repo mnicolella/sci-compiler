@@ -18,9 +18,9 @@ Bool			GetNewLine();
 //	toktypes.cpp
 Symbol*		LookupTok();
 Bool			GetSymbol();
-Bool			GetNumber(strptr);
-Bool			GetNumberOrString(strptr);
-Bool			GetString(strptr);
+Bool			GetNumber(const char*);
+Bool			GetNumberOrString(const char*);
+Bool			GetString(const char*);
 Bool			GetIdent();
 Bool			GetDefineSymbol();
 Bool			IsIdent();

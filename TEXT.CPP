@@ -27,7 +27,7 @@ TextList::init()
 }
 
 uint
-TextList::find(char* str)
+TextList::find(const char* str)
 {
 	// The value of a string is its offset in string space.
 
@@ -42,7 +42,7 @@ TextList::find(char* str)
 }
 
 uword
-TextList::hash(char* tp)
+TextList::hash(const char* tp)
 {
 	uword	hashVal;
 
@@ -53,7 +53,7 @@ TextList::hash(char* tp)
 }
 
 Text*
-TextList::add(char* str)
+TextList::add(const char* str)
 {
 	// Add a string to text space
 
@@ -80,7 +80,7 @@ TextList::add(char* str)
 }
 
 Text*
-TextList::search(char* str) const
+TextList::search(const char* str) const
 {
 	// Return the offset in string space of 'str' if it is already in string
 	// space, 0 otherwise.

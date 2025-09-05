@@ -393,7 +393,7 @@ Send(
 
 	PNode*	pn;
 	PNode* 	dn;
-	char*		objName;
+	const char* objName;
 
 	pn = theNode->addChild(New PNode(PN_SEND));
 

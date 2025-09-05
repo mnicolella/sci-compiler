@@ -63,8 +63,8 @@ Define()
 		GetRest();
 
 		if (!newSym) {
-            strptr newString = strdup ( symStr );
-            strptr oldString = strdup ( sym->str );
+            strptr newString = _strdup ( symStr );
+            strptr oldString = _strdup ( sym->str );
 
             // trim the two strings
             trimstr ( newString );
@@ -110,7 +110,7 @@ Enum()
 				GetNumber("Constant expression required");
 				val = symVal;
 			}
-			theSym->str = newStr(itoa(val, theNum, 10));
+			theSym->str = newStr(_itoa(val, theNum, 10));
 			++val;
 		}
 	}

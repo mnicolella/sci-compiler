@@ -63,7 +63,7 @@ Object::findSelector(Symbol* sym)
 
 Selector*
 Object::findSelector(
-	strptr	name)
+	const char* name)
 {
 	// Return a pointer to the selector node which has the name 'name'.
 
@@ -166,7 +166,7 @@ InitSelectors()
 
 Symbol *
 InstallSelector(
-	strptr	name,
+	const char* name,
 	int		value)
 {
 	// Add 'name' to the global symbol table as a selector with value 'value'.

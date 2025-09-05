@@ -57,7 +57,7 @@ InputSource::operator=(
 
 InputFile::InputFile(
 	FILE*	fp,
-	char*	name) :
+	const char*	name) :
 
 	InputSource(newStr(name)),
 	file(fp)
@@ -126,7 +126,7 @@ InputString::incrementPastNewLine(
 
 InputSource*
 OpenFileAsInput(
-	strptr	fileName,
+	const char* fileName,
 	Bool		required)
 {
 	FILE*				file;

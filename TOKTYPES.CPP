@@ -15,7 +15,7 @@
 int	selectorIsVar;
 
 static Symbol*	Immediate();
-static Bool		GetNumberOrStringToken(strptr errStr, Bool stringOK);
+static Bool		GetNumberOrStringToken(const char* errStr, Bool stringOK);
 
 Symbol*
 LookupTok()
@@ -126,20 +126,20 @@ IsIdent()
 
 Bool
 GetNumber(
-	strptr errStr)
+	const char* errStr)
 {
 	return GetNumberOrStringToken(errStr, False);
 }
 
 Bool
 GetNumberOrString(
-	strptr errStr)
+	const char* errStr)
 {
 	return GetNumberOrStringToken(errStr, True);
 }
 
 static Bool
-GetNumberOrStringToken(char* errStr, Bool stringOK)
+GetNumberOrStringToken(const char* errStr, Bool stringOK)
 {
 	// Get a number (or a string) from the input.
 
@@ -174,7 +174,7 @@ GetNumberOrStringToken(char* errStr, Bool stringOK)
 }
 
 Bool
-GetString(char* errStr)
+GetString(const char* errStr)
 {
 	// Get a string from the input.
 
@@ -205,7 +205,7 @@ void
 GetKeyword(
 	keyword_t	which)
 {
-	strptr		str;
+	const char* str;
 
 	GetToken();
 	if (Keyword() != which) {
@@ -282,7 +282,7 @@ IsNumber()
 static Symbol*
 Immediate()
 {
-	Symbol*	theSym;
+	Symbol*	theSym = NULL;
 
 	GetToken();
 	if (symType == S_IDENT) {

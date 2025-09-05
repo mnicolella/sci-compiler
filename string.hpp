@@ -15,7 +15,7 @@
 void trimstr ( char *str );
 
 // this function creates a new string (ala strdup)
-char *newStr ( char *str );
+char *newStr ( const char *str );
 
 #endif
 

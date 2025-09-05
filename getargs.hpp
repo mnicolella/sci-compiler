@@ -25,7 +25,7 @@ typedef struct
     char switchVal;
     int type;
     int *value;
-    char *desc;
+    const char *desc;
 } Arg;
 
 // declate the usageStr extern

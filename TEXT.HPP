@@ -19,17 +19,17 @@ struct Text {
 class TextList {
 public:
 	void	init();
-	uint	find(char*);
+	uint	find(const char*);
 
 	Text*		head;			// Pointer to start of text list
 	Text*		tail;			// Pointer to end of text list
 	size_t	size;			// Size of text in list
 
 protected:
-	Text* 	add(char*);
-	Text*		search(char*) const;
+	Text* 	add(const char*);
+	Text*		search(const char*) const;
 
-	static uword	hash(char*);
+	static uword	hash(const char*);
 };
 
 struct StrList {

@@ -419,7 +419,7 @@ GetPreprocessorToken()
 	//	definition of 'token'
 
 	struct {
-		char*	text;
+		const char*	text;
 		pt		token;
 	} tokens[] = {
 		"#ifdef",	PT_IFDEF,		//	put longer before shorter

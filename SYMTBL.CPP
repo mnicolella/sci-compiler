@@ -51,7 +51,7 @@ SymTbl::clearAsmPtrs()
 
 Symbol *
 SymTbl::install(
-	strptr	name,
+	const char* name,
 	sym_t		type)
 {
 	// Install the identifier with name 'name' in the symbol table 'symTbl'
@@ -76,7 +76,7 @@ SymTbl::add(
 
 Symbol *
 SymTbl::lookup(
-	strptr name)
+	const char* name)
 {
 	// Search this symbol table for the symbol whose name is pointed to by
 	// 'name'.  Return a pointer to the symbol if found, NULL otherwise.
@@ -105,7 +105,7 @@ SymTbl::lookup(
 
 Symbol*
 SymTbl::remove(
-	strptr name)
+	const char* name)
 {
 	// Try to remove the symbol with name pointed to by 'name' from this table
 	// and return a pointer to it if successful, NULL otherwise.
@@ -142,7 +142,7 @@ SymTbl::del(
 
 uint
 SymTbl::hash(
-	strptr str)
+	const char* str)
 {
 	// Compute the hash value of the string 'str'.
 	long value;
@@ -215,7 +215,7 @@ SymTbls::clearAsmPtrs()
 
 Symbol*
 SymTbls::lookup(
-	strptr name)
+	const char* name)
 {
 	// Search the active symbol tables for the symbol whose name is pointed
 	// to by 'name'.  Return a pointer to the symbol if found, NULL otherwise.
@@ -270,7 +270,7 @@ SymTbls::del(
 
 Symbol*
 SymTbls::remove(
-	strptr name)
+	const char* name)
 {
 	// Search the active symbol tables for the symbol whose name is pointed
 	// to by 'name'.  Remove it and return a pointer to the symbol if found,

@@ -8,8 +8,8 @@
 #include	"list.hpp"
 #endif
 
-class ANOpCode;
-class ANode;
+struct ANOpCode;
+struct ANode;
 class OutputFile;
 
 struct AList : List {

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #endif
 
-class ANode;
+struct ANode;
 class Symbol;
 
 // Structure of a node in a class or object template.
@@ -25,7 +25,7 @@ struct Selector {
 	uint			tag;
 };
 
-class Class;
+struct Class;
 
 struct Object {
 	Object();
@@ -34,7 +34,7 @@ struct Object {
 
 	void			dupSelectors(Class*);
 	Selector*	findSelector(Symbol*);
-	Selector*	findSelector(strptr name);
+	Selector*	findSelector(const char* name);
 	void			freeSelectors();
 
 	Symbol*		sym;			// the symbol for this object/class
@@ -116,8 +116,8 @@ void			Instance();
 
 //	selector.cpp
 Symbol*		GetSelector(Symbol*);
-void			InitSelectors();
-Symbol*		InstallSelector(strptr name, int value);
+void		InitSelectors();
+Symbol*		InstallSelector(const char* name, int value);
 int			NewSelectorNum();
 
 extern Class*	classes[];

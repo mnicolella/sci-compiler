@@ -15,8 +15,8 @@ class OutputFile;
 #define	BYTESIZE		2
 #define	WORDSIZE		3
 
-class ANode;
-class ANReference;
+struct ANode;
+struct ANReference;
 class Symbol;
 
 struct ANReference {
@@ -122,7 +122,7 @@ struct ANTable : ANode
 // finish() method must be called when the table is completed to restore
 // the original list as the current one.
 {
-	ANTable(char* nameStr, ANode* before = 0);
+	ANTable(const char* nameStr, ANode* before = 0);
 
 	size_t	size();
 	size_t	setOffset(size_t ofs);
@@ -130,7 +130,7 @@ struct ANTable : ANode
 	void		emit(OutputFile*);
 	void		finish();
 
-	char*		name;			// name of table (values follow)
+	const char*	name;			// name of table (values follow)
 	AList		entries;		// list of entries in the table
 	AList*	oldList;		// list active when table was created
 };
@@ -139,10 +139,10 @@ struct ANObjTable : ANTable
 // ANObjTable sub-classes ANTable to have the table added before the first
 // instance of code in the hunk list.
 {
-	ANObjTable(char* nameStr);
+	ANObjTable(const char* nameStr);
 };
 
-class Text;
+struct Text;
 
 struct ANText : ANode
 // The ANText class represents a text string.
@@ -218,7 +218,7 @@ struct ANProp : ANode
 {
 	ANProp(Symbol* sp, int v);
 
-	virtual	char*		desc() = 0;		// return descriptive string
+	virtual	const char*	desc() = 0;		// return descriptive string
 	virtual	uint		value() = 0;	// return value of selector
 
 	size_t	size();
@@ -234,7 +234,7 @@ struct ANIntProp : ANProp
 {
 	ANIntProp(Symbol* sp, int v) : ANProp(sp, v) {}
 
-	char*		desc();		// return descriptive string
+	const char*	desc();		// return descriptive string
 	uint		value();		// return value of selector
 };
 
@@ -244,7 +244,7 @@ struct ANTextProp : ANProp
 	ANTextProp(Symbol* sp, int v);
 
 	void		emit(OutputFile*);
-	char*		desc();		// return descriptive string
+	const char*	desc();		// return descriptive string
 	uint		value();		// return value of selector
 };
 
@@ -253,7 +253,7 @@ struct ANOfsProp : ANProp
 {
 	ANOfsProp(Symbol* sp) : ANProp(sp, 0) {}
 
-	char*		desc();
+	const char*	desc();
 	uint		value();
 
 	ANode*	target;
@@ -264,7 +264,7 @@ struct ANMethod : ANProp
 {
 	ANMethod(Symbol* sp, ANMethCode* mp);
 
-	char*		desc();			// return descriptive string
+	const char*	desc();			// return descriptive string
 	uint		value();			// return value of selector
 
 	ANMethCode	*method;
@@ -460,7 +460,7 @@ struct ANSuper : ANSend
 	Symbol*	sym;
 };
 
-class VarList;
+struct VarList;
 
 class ANVars : public ANode
 // The ANVars class is used to generate the block of variables for the

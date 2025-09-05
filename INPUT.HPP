@@ -25,7 +25,7 @@ struct InputSource {
 };
 
 struct InputFile : InputSource {
-	InputFile(FILE*, char* name);
+	InputFile(FILE*, const char* name);
 	~InputFile();
 
 	Bool	incrementPastNewLine(char*&);
@@ -49,7 +49,7 @@ struct InputString : InputSource {
 Bool				CloseInputSource();
 void				FreeIncludePath();
 Bool				GetNewInputLine();
-InputSource*	OpenFileAsInput(strptr, Bool);
+InputSource*	OpenFileAsInput(const char*, Bool);
 void				SetIncludePath();
 void				SetStringInput(strptr);
 void				SetInputToCurrentLine();
@@ -62,7 +62,7 @@ fpos_t			GetParsePos();
 fpos_t			GetTokenEnd();
 void				SetTokenEnd();
 
-class StrList;
+struct StrList;
 
 extern char				curFile[];
 extern int				curLine;

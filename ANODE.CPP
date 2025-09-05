@@ -196,7 +196,7 @@ ANWord::emit(OutputFile* out)
 ///////////////////////////////////////////////////
 
 ANTable::ANTable(
-	strptr	nameStr,
+	const char* nameStr,
 	ANode*	before) :
 	
 	ANode(curList, before), name(nameStr), oldList(curList)
@@ -241,7 +241,7 @@ ANTable::finish()
 ///////////////////////////////////////////////////
 
 ANObjTable::ANObjTable(
-	strptr	nameStr) :
+	const char* nameStr) :
 
 	ANTable(nameStr, codeStart)
 {
@@ -261,7 +261,7 @@ ANText::setOffset(
 	size_t ofs)
 {
 	if (!textStart)
-		textStart = ofs;
+		textStart = (int)ofs;
 	return ANode::setOffset(ofs);
 }
 
@@ -402,7 +402,7 @@ ANProp::emit(OutputFile* out)
 	out->WriteWord(value());
 }
 
-strptr
+const char*
 ANIntProp::desc()
 {	
 	return "prop";
@@ -428,7 +428,7 @@ ANTextProp::emit(OutputFile* out)
 	ANProp::emit(out);
 }
 
-strptr
+const char*
 ANTextProp::desc()
 {
 	return "text";
@@ -440,7 +440,7 @@ ANTextProp::value()
 	return val + textStart;
 }
 
-strptr
+const char*
 ANOfsProp::desc()
 {
 	return "ofs";
@@ -449,7 +449,7 @@ ANOfsProp::desc()
 uint
 ANOfsProp::value()
 {
-	return target->offset;
+	return (uint)target->offset;
 }
 
 ANMethod::ANMethod(
@@ -458,7 +458,7 @@ ANMethod::ANMethod(
 {
 }
 
-strptr
+const char*
 ANMethod::desc()
 {
 	return "local";
@@ -467,7 +467,7 @@ ANMethod::desc()
 uint
 ANMethod::value()
 {	
-	return method->offset;
+	return (uint)method->offset;
 }
 
 ///////////////////////////////////////////////////
@@ -699,7 +699,7 @@ ANCall::size()
 	else if (!sym->loc || target->offset == UNDEFINED)
 		return 5;
 #if	defined(OPTIMIZE_TRANSFERS)
-	else if (abs(target->offset - (offset + 5)) < 128) {
+	else if (abs((int)(target->offset - (offset + 5))) < 128) {
 		op |= OP_BYTE;
 		return 4;
 	}
@@ -727,12 +727,12 @@ ANCall::emit(OutputFile* out)
 		return;
 	}
 
-	int n = target->offset - (offset + size());
+	size_t n = target->offset - (offset + size());
 	out->WriteOp(op);
 	if (op & OP_BYTE)
-		out->WriteByte(n);
+		out->WriteByte((ubyte)n);
 	else
-		out->WriteWord(n);
+		out->WriteWord((uword)n);
 
 	out->WriteWord(numArgs);
 }
@@ -755,7 +755,7 @@ ANBranch::size()
 	else if (!target || target->offset == UNDEFINED)
 		return 3;
 #if	defined(OPTIMIZE_TRANSFERS)
-	else if (abs(target->offset - (offset + 4)) < 128) {
+	else if (abs((int)(target->offset - (offset + 4))) < 128) {
 		op |= OP_BYTE;
 		return 2;
 	}
@@ -777,13 +777,13 @@ ANBranch::list()
 void
 ANBranch::emit(OutputFile* out)
 {
-	int n = target->offset - (offset + size());
+	size_t n = target->offset - (offset + size());
 
 	out->WriteOp(op);
 	if (op & OP_BYTE)
-		out->WriteByte(n);
+		out->WriteByte((ubyte)n);
 	else
-		out->WriteWord(n);
+		out->WriteWord((uword)n);
 }
 
 ///////////////////////////////////////////////////
@@ -851,7 +851,7 @@ ANOpOfs::emit(OutputFile* out)
 {
 	out->WriteOp(op);
 	sc->hunkList->addFixup(offset + 1);
-	out->WriteWord(textStart + ofs);
+	out->WriteWord((uword)(textStart + ofs));
 }
 
 ///////////////////////////////////////////////////
@@ -888,7 +888,7 @@ ANObjID::emit(OutputFile* out)
 
 	out->WriteOp(op);
 	sc->hunkList->addFixup(offset+1);
-	out->WriteWord(target->offset);
+	out->WriteWord((uword)target->offset);
 }
 
 ///////////////////////////////////////////////////
@@ -1057,7 +1057,7 @@ ANVars::emit(OutputFile* out)
 
 ANFileName::ANFileName(const char* name) :
 	ANOpCode(op_fileName),
-	name(strdup ( name ))
+	name(_strdup ( name ))
 {
 }
 

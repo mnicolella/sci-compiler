@@ -1,5 +1,6 @@
 MIT License
 
+Copyright (c) 2025 Michael Nicolella
 Copyright (c) 2024 Digital Alchemy Studios, LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

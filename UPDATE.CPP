@@ -65,10 +65,12 @@ WriteClassTbl()
 
 	static	ubyte	resID[2] = {MemResVocab, 0};
 
-	_Packed struct ClassTblEntry {
+#pragma pack(push, 1)
+	struct ClassTblEntry {
 		SCIUWord	objID;
 		SCIUWord	scriptNum;
 	};
+#pragma pack(pop)
 
 	// Allocate storage for the class table.
 	ClassTblEntry* classTbl = New ClassTblEntry[maxClassNum + 1];

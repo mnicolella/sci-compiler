@@ -38,7 +38,7 @@ public:
 					// Return the first symbol in the table, or 0 if the table
 					// is empty.
 
-	Symbol*	lookup(strptr name);
+	Symbol*	lookup(const char* name);
 					// Return a pointer to the symbol with name 'name' if it is in
 					// this table, 0 otherwise.
 
@@ -50,11 +50,11 @@ private:
 	SymTbl(int size = ST_MEDIUM, Bool retain = False);
 	~SymTbl();
 
-	Symbol*	install(strptr name, sym_t type);
+	Symbol*	install(const char* name, sym_t type);
 					// Install the identifier 'name' as a Symbol of type 'type'.
 					// Return a pointer to it.
 
-	Symbol*	remove(strptr name);
+	Symbol*	remove(const char* name);
 					// Remove the Symbol with name 'name' from this table.  Return
 					// a pointer to the Symbol.
 
@@ -76,7 +76,7 @@ private:
 	Symbol*	curSym;			// current Symbol in firstSym()/nextSym()
 	int		curIndex;		// current hash table index in firstSym()/nextSym()
 
-	uint		hash(strptr str);
+	uint		hash(const char* str);
 					// Return the hash value of the string for this table
 
 	friend class SymTbls;
@@ -100,26 +100,26 @@ public:
 				// Delete the symbol with name 'name' from the SymTbls in activeList
 				// Return True if the symbol was present, False otherwise.
 
-	Symbol*	installLocal(strptr n, sym_t t)
+	Symbol*	installLocal(const char* n, sym_t t)
 					{ return activeList->install(n, t); }
-	Symbol*	installModule(strptr n, sym_t t)
+	Symbol*	installModule(const char* n, sym_t t)
 					{ return moduleSymTbl->install(n, t); }
-	Symbol*	installGlobal(strptr n, sym_t t)
+	Symbol*	installGlobal(const char* n, sym_t t)
 					{ return globalSymTbl->install(n, t); }
-	Symbol*	installClass(strptr n)
+	Symbol*	installClass(const char* n)
 					{ return classSymTbl->install(n, S_CLASS); }
-	Symbol*	installSelector(strptr n)
+	Symbol*	installSelector(const char* n)
 					{ return selectorSymTbl->install(n, S_SELECT); }
 
 	void		delFreeTbls();
 				// Delete all symbol tables which do not have their 'keep' property
 				//	set
 
-	Symbol*	lookup(strptr name);
+	Symbol*	lookup(const char* name);
 				// syms.lookup the Symbol with name 'name' in 'activeList'. Return 0
 				// if not found.
 
-	Symbol*	remove(strptr name);
+	Symbol*	remove(const char* name);
 				// Remove the symbol with name 'name' from the SymTbls in activeList
 				// Return a pointer to the symbol if found, NULL otherwise.
 

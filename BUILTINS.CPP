@@ -9,7 +9,7 @@
 #include	"symtbl.hpp"
 
 struct BuiltIn {
-	strptr	name;
+	const char* name;
 	sym_t		type;
 	int		val;
 } builtIns[] = {

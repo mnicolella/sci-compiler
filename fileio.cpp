@@ -12,7 +12,7 @@
 //
 // This function builds a path name from the provided variables and stores it in dest.
 // 
-void MakeName ( char *dest, char *dir, char *name, char *ext )
+void MakeName ( char *dest, const char *dir, const char *name, const char *ext )
 {
 	*dest = 0;
 
@@ -25,7 +25,7 @@ void MakeName ( char *dest, char *dir, char *name, char *ext )
 		// If the dir has no trailing backslash and the name has no leading backslash and
 		// the dir is not a drive selector, add a backslash.
 		//
-		int dirLen = strlen ( dir );
+		int dirLen = (int)strlen ( dir );
 
 		if ( dirLen && (dir[dirLen-1] != '\\') && (dir[dirLen-1] != ':') && (*name != '\\') )
 			strcat ( dest, "\\" );

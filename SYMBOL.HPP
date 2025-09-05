@@ -119,10 +119,10 @@ enum op_t {
 	C_ULE				// u<=
 };
 
-class ANode;
-class ANReference;
-class Object;
-class Public;
+struct ANode;
+struct ANReference;
+struct Object;
+struct Public;
 
 class Symbol {
 	// The Symbol class is where information about identifiers resides.  Symbols
@@ -131,7 +131,7 @@ public:
 	Symbol(const char* str = 0, sym_t = (sym_t) 0);
 	~Symbol();
 
-	strptr	name;			// pointer to the symbol name
+	const char* name;			// pointer to the symbol name
 	sym_t		type;			// symbol type
 	uint		lineNum;		//	where symbol was first defined
 

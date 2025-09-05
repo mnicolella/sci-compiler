@@ -141,7 +141,7 @@ FixupList::initFixups()
 	// Set offset to fixup table.  If the table is on an odd boundary,
 	// adjust to an even one.
 
-	((ANWord *) head)->value = fixOfs + (fixOfs & 1);
+	((ANWord *) head)->value = (int)(fixOfs + (fixOfs & 1));
 
 	fixups = new size_t[numFixups];
 	fixIndex = 0;
@@ -161,8 +161,8 @@ FixupList::listFixups()
 	ListWord(numFixups);
 	curOfs += 2;
 
-	for (int i = 0; i < numFixups; ++i) {
-		ListWord(fixups[i]);
+	for (uint i = 0; i < numFixups; ++i) {
+		ListWord((uword)fixups[i]);
 		curOfs += 2;
 	}
 }
@@ -177,8 +177,8 @@ FixupList::emitFixups(OutputFile* out)
 		out->WriteByte(0);
 
 	out->WriteWord(numFixups);
-	for (int i = 0; i < numFixups; ++i)
-		out->WriteWord(fixups[i]);
+	for (uint i = 0; i < numFixups; ++i)
+		out->WriteWord((SCIWord)fixups[i]);
 }
 
 void

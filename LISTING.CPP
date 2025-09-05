@@ -29,7 +29,7 @@ static int		sourceLineNum;
 #define	OP_SIZE	2		// Operator takes a size
 
 struct OpStr {
-	char*		str;
+	const char* str;
 	UInt16	info;
 }  static theOpCodes[] = {
 	"bnot",	JUST_OP,
@@ -115,7 +115,7 @@ OpenListFile(const char* sourceFileName)
 	if (!listCode)
 		return;
 
-	MakeName(listName, (char *)sourceFileName, (char *)sourceFileName, ".sl");
+	MakeName(listName, sourceFileName, sourceFileName, ".sl");
 	if (!(listFile = fopen(listName, "wt")))
 		Panic("Can't open %s for listing", listName);
 
@@ -145,11 +145,11 @@ CloseListFile()
 void
 DeleteListFile()
 {
-	unlink(listName);
+	_unlink(listName);
 }
 
 void
-Listing(char* parms, ...)
+Listing(const char* parms, ...)
 {
 	va_list	argPtr;
 
@@ -164,7 +164,7 @@ Listing(char* parms, ...)
 }
 
 void
-ListingNoCRLF(char* parms, ...)
+ListingNoCRLF(const char* parms, ...)
 {
 	va_list	argPtr;
 
@@ -183,7 +183,7 @@ ListOp(int theOp)
 {
 	OpStr*	oPtr;
 	char*	sp;
-	char*	op;
+	const char*	op;
 	char		opStr[10];
 	Bool		hasArgs;
 	Bool		addSize;
@@ -193,7 +193,8 @@ ListOp(int theOp)
 
 	ListOffset();
 
-	op = sp = opStr;
+	op = opStr;
+	sp = opStr;
 	if (!(theOp & OP_LDST)) {
 		oPtr = &theOpCodes[(theOp & ~OP_BYTE) / 2];
 		hasArgs = oPtr->info & OP_ARGS;
@@ -261,7 +262,7 @@ ListOp(int theOp)
 }
 
 void
-ListArg(char* parms, ...)
+ListArg(const char* parms, ...)
 {
 	va_list	argPtr;
 	char		argStr[80];
@@ -279,7 +280,7 @@ ListArg(char* parms, ...)
 }
 
 void
-ListAsCode(char* parms, ...)
+ListAsCode(const char* parms, ...)
 {
 	va_list	argPtr;
 	char		buf[1024];

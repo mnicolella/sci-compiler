@@ -247,8 +247,6 @@ CompileFile(
 	syms.delFreeTbls();
 
 #if !defined(WINDOWS) && !defined(__386__)
-	if (writeMemSizes)
-		MemDisplay();
 	HEAPCHK
 #endif
 }

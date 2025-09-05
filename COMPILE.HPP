@@ -3,10 +3,10 @@
 #if !defined(COMPILE_HPP)
 #define COMPILE_HPP
 
-class PNode;
-class ANode;
+struct PNode;
+struct ANode;
 class Symbol;
-class Object;
+struct Object;
 
 //	compile.cpp
 void	CompileCode(PNode* pn);

@@ -4,13 +4,13 @@
 #define ERROR_HPP
 
 void	EarlyEnd();
-void	Error(strptr parms, ...);
-void	Fatal(strptr parms, ...);
-void	Info(strptr parms, ...);
-void	output(strptr fmt, ...);
-void	Severe(strptr parms, ...);
-void	Warning(strptr parms, ...);
-void	Panic(strptr parms, ...);
+void	Error(const char* parms, ...);
+void	Fatal(const char* parms, ...);
+void	Info(const char* parms, ...);
+void	output(const char* fmt, ...);
+void	Severe(const char* parms, ...);
+void	Warning(const char* parms, ...);
+void	Panic(const char* parms, ...);
 
 extern int	errors;
 extern int	warnings;
