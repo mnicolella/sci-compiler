@@ -244,6 +244,8 @@ void exargs ( int *argcPtr, char ***argvPtr )
 
     *argvPtr = newArgs;
     *argcPtr = putIdx;
+
+    (*argvPtr)[*argcPtr] = NULL;
 }
 
 
