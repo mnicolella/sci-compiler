@@ -19,7 +19,6 @@
 
 char				curFile[_MAX_PATH + 1];
 int				curLine;
-InputSource*	curSourceFile;
 StrList*			includePath;
 InputSource*	is;
 InputSource*	theFile;

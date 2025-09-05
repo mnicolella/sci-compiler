@@ -998,8 +998,8 @@ MakeProc(PNode* pn)
 		Compile(pn->child);
 
 	if (includeDebugInfo) {
-		assert(curSourceFile);
-		New ANLineNum(curSourceFile->lineNum);
+		assert(is);
+		New ANLineNum(is->lineNum);
 	}
 	New ANOpCode(op_ret);
 

@@ -77,7 +77,7 @@ Assemble()
 	char infoFileName[1024];
 	sprintf ( infoFileName, "%d.inf", (unsigned short)script );
 	FILE *infoFile = fopen ( infoFileName, "wb" );
-	fprintf ( infoFile, "%s\n", curSourceFile->fileName );
+	if (is) { fprintf(infoFile, "%s\n", is->fileName); }
 	fclose ( infoFile );
 
 	// Now generate object code.

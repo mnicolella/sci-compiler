@@ -66,7 +66,7 @@ struct StrList;
 
 extern char				curFile[];
 extern int				curLine;
-extern InputSource*	curSourceFile;
+//extern InputSource*	curSourceFile;
 extern StrList*		includePath;
 extern InputSource*	is;
 extern InputSource*	theFile;

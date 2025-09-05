@@ -194,7 +194,7 @@ static void
 CompileFile(
 	strptr	fileName)
 {
-	char	sourceFileName[_MAX_PATH + 1];
+	char	sourceFileName[_MAX_PATH + 1] = { 0 };
 	char*	extPtr;
 
 	// Do some initialization.
@@ -217,7 +217,6 @@ CompileFile(
 
 	output("%s\n", sourceFileName);
 	theFile = OpenFileAsInput(sourceFileName, True);
-	curSourceFile = theFile;
 
 	// Parse the file (don't lock the symbol tables), then assemble it.
 	syms.moduleSymTbl = syms.add(ST_MEDIUM);
@@ -245,10 +244,6 @@ CompileFile(
 
 	// Delete any free symbol tables.
 	syms.delFreeTbls();
-
-#if !defined(WINDOWS) && !defined(__386__)
-	HEAPCHK
-#endif
 }
 
 static void
