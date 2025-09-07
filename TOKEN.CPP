@@ -118,7 +118,6 @@ GetRest(
 					*sp = '\0';
 					symType = S_STRING;
 					is->ptr = ip;
-					SetTokenEnd();
 					return;
 				}
 				break;
@@ -206,8 +205,6 @@ NextToken()
 	// If we encounter a '\0' in the scan, it does not terminate the
 	// character, but simply causes us to move to another input source.
 
-	SetTokenStart();
-
 	c = *ip;
 	sp = symStr;
 	if (IsTok(c)) {
@@ -215,7 +212,6 @@ NextToken()
 		*++sp = '\0';
 		symType = (sym_t) c;
 		is->ptr = ++ip;
-		SetTokenEnd();
 		return True;
 	}
 
@@ -247,7 +243,6 @@ NextToken()
 	}
 	*sp = '\0';
 	is->ptr = ip;
-	SetTokenEnd();
 
 	return True;
 }
@@ -516,7 +511,6 @@ ReadNumber(
 
 	*sp = '\0';
 	is->ptr = ip;
-	SetTokenEnd();
 }
 
 static void
@@ -634,7 +628,6 @@ ReadString(
 
 	if (is) {
 		is->ptr = ip;
-		SetTokenEnd();
 	} else
 		EarlyEnd();
 }
@@ -691,6 +684,4 @@ ReadKey(
 		}
 
 	is->ptr = ip;
-	SetTokenEnd();
 }
-

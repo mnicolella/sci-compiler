@@ -46,9 +46,6 @@ Parse()
 
 		setjmp(recoverBuf);
 
-		//	set this position in the input stream as the beginning of the parse
-		SetParseStart();
-
 		// The next token must be a keyword.  Dispatch to the appropriate
 		// routines for the keyword.
 

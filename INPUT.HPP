@@ -55,13 +55,6 @@ void				SetStringInput(strptr);
 void				SetInputToCurrentLine();
 void				RestoreInput();
 
-void				SetTokenStart();
-void				SetParseStart();
-fpos_t   		GetParseStart();
-fpos_t			GetParsePos();
-fpos_t			GetTokenEnd();
-void				SetTokenEnd();
-
 struct StrList;
 
 extern char				curFile[];
