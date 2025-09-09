@@ -556,7 +556,7 @@ ReadString(
 
 			case ' ':
 			case '\t':
-				if (sp[-1] != '\n' && !truncated)
+				if (((sp == symStr) || (sp[-1] != '\n')) && !truncated)
 					*sp++ = ' ';
 				while ((c = *ip) == ' ' || c == '\t' || c == '\n') {
 					++ip;
